@@ -41,11 +41,11 @@ GAME_OBJECT_DEFS = {
           },
       },
 
-      onCollide = function(entity)
-        if entity.health <= 4 then
-          entity.health = entity.health + 2
-        elseif entity.health == 5 then
-          entity.health = entity.health + 1
+      onCollide = function(object, player)
+        if player.health <= 4 then
+          player.health = player.health + 2
+        elseif player.health == 5 then
+          player.health = player.health + 1
         end
       end
     },
