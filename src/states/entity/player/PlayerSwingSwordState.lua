@@ -18,7 +18,7 @@ function PlayerSwingSwordState:init(player, dungeon)
 
     -- create hitbox based on where the player is and facing
     local direction = self.player.direction
-    
+
     local hitboxX, hitboxY, hitboxWidth, hitboxHeight
 
     if direction == 'left' then
@@ -61,6 +61,16 @@ function PlayerSwingSwordState:update(dt)
         if entity:collides(self.swordHitbox) then
             entity:damage(1)
             gSounds['hit-enemy']:play()
+
+            --chance to generate a heart
+            --TESTING
+            if math.random(1) == 1 then
+              table.insert(self.dungeon.currentRoom.objects, GameObject(
+                GAME_OBJECT_DEFS['heart'],
+                entity.x,
+                entity.y
+              ))
+            end
         end
     end
 

@@ -26,5 +26,27 @@ GAME_OBJECT_DEFS = {
     },
     ['pot'] = {
         -- TODO
-    }
+    },
+    ['heart'] = {
+      type = 'heart',
+      texture = 'hearts',
+      frame = 5,
+      width = 16,
+      height = 16,
+      solid = false,
+      defaultState = 'displayed',
+      states = {
+          ['displayed'] = {
+              frame = 5
+          },
+      },
+
+      onCollide = function(entity)
+        if entity.health <= 4 then
+          entity.health = entity.health + 2
+        elseif entity.health == 5 then
+          entity.health = entity.health + 1
+        end
+      end
+    },
 }
