@@ -29,11 +29,8 @@ function GameObject:init(def, x, y)
     self.height = def.height
 
     -- default empty collision callback
-    if def.onCollide == nil then
-      self.onCollide = function() end
-    else
-      self.onCollide = def.onCollide
-    end
+    self.onCollide = def.onCollide or function() end
+    self.collidable = def.collidable or false
 end
 
 function GameObject:update(dt)
