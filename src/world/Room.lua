@@ -180,9 +180,13 @@ function Room:update(dt)
 
         -- trigger collision callback on object
         if self.player:collides(object) then
-            object:onCollide(self.player)
+            local remove = object:onCollide(self.player)
+            if remove then
+              table.remove(self.objects, k)
+            end
         end
     end
+    ::continue::
 end
 
 function Room:render()

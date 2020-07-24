@@ -29,11 +29,16 @@ function GameObject:init(def, x, y)
     self.height = def.height
 
     -- default empty collision callback
+<<<<<<< HEAD
     if def.onCollide == nil then self.onCollide = function() end
     else self.onCollide = def.onCollide end
 
     if def.consumable == nil then self.consumable = function() end
     else self.consumable = def.consumable end
+=======
+    self.onCollide = def.onCollide or function() end
+    self.collidable = def.collidable or false
+>>>>>>> fdbbe0ba2fef7c6c988cc113d269b3ef5329d167
 end
 
 function GameObject:update(dt)
