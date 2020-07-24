@@ -35,6 +35,7 @@ GAME_OBJECT_DEFS = {
       height = 16,
       solid = false,
       defaultState = 'displayed',
+      collidable = true,
       states = {
           ['displayed'] = {
               frame = 5
@@ -42,11 +43,17 @@ GAME_OBJECT_DEFS = {
       },
 
       onCollide = function(object, player)
-        if player.health <= 4 then
-          player.health = player.health + 2
-        elseif player.health == 5 then
-          player.health = player.health + 1
+        if collidable ~= false then
+          if player.health <= 4 then
+            player.health = player.health + 2
+          elseif player.health == 5 then
+            player.health = player.health + 1
+          end
         end
+
+        collidable = false
+
+        return true
       end
     },
 }
