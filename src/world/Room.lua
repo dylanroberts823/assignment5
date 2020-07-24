@@ -152,6 +152,17 @@ function Room:update(dt)
 
     self.player:update(dt)
 
+    for k, object in pairs(self.objects) do
+        object:update(dt)
+        -- trigger collision callback on object
+        if self.player:collides(object) then
+          object:onCollide(self.player, object)
+          --execute the functions
+          if object.consumed then table.remove(self.objects, k) end
+        end
+
+    end
+
     for i = #self.entities, 1, -1 do
         local entity = self.entities[i]
 
@@ -172,15 +183,6 @@ function Room:update(dt)
             if self.player.health == 0 then
                 gStateMachine:change('game-over')
             end
-        end
-    end
-
-    for k, object in pairs(self.objects) do
-        object:update(dt)
-
-        -- trigger collision callback on object
-        if self.player:collides(object) then
-            object:onCollide(self.player)
         end
     end
 end

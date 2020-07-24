@@ -34,6 +34,7 @@ GAME_OBJECT_DEFS = {
       width = 16,
       height = 16,
       solid = false,
+      consumable = true,
       defaultState = 'displayed',
       states = {
           ['displayed'] = {
@@ -41,11 +42,12 @@ GAME_OBJECT_DEFS = {
           },
       },
 
-      onCollide = function(object, player)
-        if player.health <= 4 then
-          player.health = player.health + 2
-        elseif player.health == 5 then
-          player.health = player.health + 1
+      onCollide = function(obj, player)
+        --change the health
+        if obj.consumed == false then
+          if player.health <= 4 then player.health = player.health + 2
+          elseif player.health == 5 then player.health = player.health + 1 end
+          obj.consumed = true
         end
       end
     },
