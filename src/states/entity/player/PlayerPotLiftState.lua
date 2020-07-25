@@ -48,14 +48,13 @@ function PlayerPotLiftState:update(dt)
   -- check if hitbox collides with any entities in the scene
   for k, object in pairs(self.dungeon.currentRoom.objects) do
       if object:collides(self.potHitbox) then
-        print("collides")
-        if object.type == 'pot' then self.hasPot = true end
+        if object.type == 'pot' then self.player.hasPot = true end
       end
   end
 
   if self.player.currentAnimation.timesPlayed > 0 then
       self.player.currentAnimation.timesPlayed = 0
-      if not self.hasPot then self.player:changeState('idle')
+      if not self.player.hasPot then self.player:changeState('idle')
       else self.player:changeState('pot-idle') end
   end
 end

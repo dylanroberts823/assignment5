@@ -10,7 +10,7 @@ EntityIdleState = Class{__includes = BaseState}
 
 function EntityIdleState:init(entity)
     self.entity = entity
-
+    print(self.entity.hasPot)
     if self.entity.hasPot then self.entity:changeAnimation('pot-idle-' .. self.entity.direction)
     else self.entity:changeAnimation('idle-' .. self.entity.direction) end
 
@@ -26,7 +26,7 @@ function EntityIdleState:processAI(params, dt)
         self.waitTimer = self.waitTimer + dt
 
         if self.waitTimer > self.waitDuration then
-            if self.entity.hasPot then self.entity:changeState('pot-walk') 
+            if self.entity.hasPot then self.entity:changeState('pot-walk')
             else self.entity:changeState('walk') end
         end
     end
