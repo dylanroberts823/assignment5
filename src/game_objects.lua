@@ -37,6 +37,9 @@ GAME_OBJECT_DEFS = {
       collidable = true,
       states = {
           ['dropped'] = {
+            frame = 111
+          },
+          ['lifted'] = {
               frame = 111
           }
       },

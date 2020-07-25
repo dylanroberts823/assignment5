@@ -206,6 +206,13 @@ function Room:update(dt)
             object.consumed = true
           end
         end
+
+        --Have pot track player if it is lifted
+        if object.type == 'pot' and object.state == 'lifted' then
+          object.x = self.player.x
+          object.y = self.player.y - 8
+        end
+
     end
 end
 
