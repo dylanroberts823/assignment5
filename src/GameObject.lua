@@ -32,8 +32,8 @@ function GameObject:init(def, x, y)
     if def.onCollide == nil then self.onCollide = function() end
     else self.onCollide = def.onCollide end
 
-    if def.consumable == nil then self.consumable = function() end
-    else self.consumable = def.consumable end
+    if def.consumed == nil then self.consumed = false
+    else self.consumed = def.consumed end
 end
 
 function GameObject:update(dt)

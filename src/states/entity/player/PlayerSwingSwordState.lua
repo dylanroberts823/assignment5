@@ -61,15 +61,17 @@ function PlayerSwingSwordState:update(dt)
         if entity:collides(self.swordHitbox) then
             entity:damage(1)
             gSounds['hit-enemy']:play()
-
-            --chance to generate a heart
-            --TESTING
-            if math.random(1) == 1 then
-              table.insert(self.dungeon.currentRoom.objects, GameObject(
-                GAME_OBJECT_DEFS['heart'],
-                entity.x,
-                entity.y
-              ))
+            if entity.health == 0 then
+              --chance to generate a heart
+              --TESTING
+              if math.random(1) == 1 then
+                table.insert(self.dungeon.currentRoom.objects, GameObject(
+                  GAME_OBJECT_DEFS['heart'],
+                  entity.x,
+                  entity.y
+                ))
+                print("added heart")
+              end
             end
         end
     end
