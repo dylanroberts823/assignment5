@@ -12,7 +12,7 @@ ENTITY_DEFS = {
         animations = {
             ['walk-left'] = {
                 frames = {13, 14, 15, 16},
-                interval = 0.155,
+                interval = 0.15,
                 texture = 'character-walk'
             },
             ['walk-right'] = {
@@ -66,37 +66,37 @@ ENTITY_DEFS = {
             },
             ['sword-up'] = {
                 frames = {5, 6, 7, 8},
-                interval = 0.1,
+                interval = 0.05,
                 looping = false,
                 texture = 'character-swing-sword'
             },
             ['pot-lift-left'] = {
                 frames = {10, 11, 12},
-                interval = .1,
+                interval = .15,
                 looping = false,
                 texture = 'character-pot-lift'
             },
             ['pot-lift-right'] = {
                 frames = {4, 5, 6},
-                interval = .1,
+                interval = .15,
                 looping = false,
                 texture = 'character-pot-lift'
             },
             ['pot-lift-down'] = {
                 frames = {1, 2, 3},
-                interval = .1,
+                interval = .15,
                 looping = false,
                 texture = 'character-pot-lift'
             },
             ['pot-lift-up'] = {
                 frames = {4, 5, 6},
-                interval = 1,
+                interval = .15,
                 looping = false,
                 texture = 'character-pot-lift'
             },
             ['pot-walk-left'] = {
                 frames = {13, 14, 15, 16},
-                interval = 0.155,
+                interval = 0.15,
                 texture = 'character-pot-walk'
             },
             ['pot-walk-right'] = {
