@@ -132,25 +132,25 @@ ENTITY_DEFS = {
             },
             ['pot-throw-left'] = {
                 frames = {12, 11, 10},
-                interval = 0.05,
+                interval = 0.15,
                 looping = false,
                 texture = 'character-pot-lift'
             },
             ['pot-throw-right'] = {
                 frames = {6, 5, 4},
-                interval = 0.05,
+                interval = 0.15,
                 looping = false,
                 texture = 'character-pot-lift'
             },
             ['pot-throw-down'] = {
                 frames = {3, 2, 1},
-                interval = 0.05,
+                interval = 0.15,
                 looping = false,
                 texture = 'character-pot-lift'
             },
             ['pot-throw-up'] = {
                 frames = {9, 8, 7},
-                interval = 0.05,
+                interval = 0.15,
                 looping = false,
                 texture = 'character-pot-lift'
             },

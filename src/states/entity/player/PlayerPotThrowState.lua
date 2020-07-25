@@ -1,84 +1,37 @@
 
 
-PlayerThrowPotState = Class{__includes = BaseState}
+PlayerPotThrowState = Class{__includes = BaseState}
 
-function PlayerThrowPotState:init(player, dungeon)
+function PlayerPotThrowState:init(player, dungeon)
     self.player = player
     self.dungeon = dungeon
 
     -- render offset for spaced character sprite
     self.player.offsetY = 5
-    self.player.offsetX = 8
+    self.player.offsetX = 0
 
     -- create hitbox based on where the player is and facing
     local direction = self.player.direction
-
-    local hitboxX, hitboxY, hitboxWidth, hitboxHeight
-
-    if direction == 'left' then
-        hitboxWidth = 8
-        hitboxHeight = 16
-        hitboxX = self.player.x - hitboxWidth
-        hitboxY = self.player.y + 2
-    elseif direction == 'right' then
-        hitboxWidth = 8
-        hitboxHeight = 16
-        hitboxX = self.player.x + self.player.width
-        hitboxY = self.player.y + 2
-    elseif direction == 'up' then
-        hitboxWidth = 16
-        hitboxHeight = 8
-        hitboxX = self.player.x
-        hitboxY = self.player.y - hitboxHeight
-    else
-        hitboxWidth = 16
-        hitboxHeight = 8
-        hitboxX = self.player.x
-        hitboxY = self.player.y + self.player.height
-    end
-
-    self.swordHitbox = Hitbox(hitboxX, hitboxY, hitboxWidth, hitboxHeight)
-    self.player:changeAnimation('sword-' .. self.player.direction)
+    self.player:changeAnimation('pot-throw-' .. self.player.direction)
 end
 
-function PlayerThrowPotState:enter(params)
-    gSounds['sword']:stop()
-    gSounds['sword']:play()
+function PlayerPotThrowState:enter(params)
 
-    -- restart sword swing animation
+    -- restart throw animation
     self.player.currentAnimation:refresh()
 end
 
-function PlayerThrowPotState:update(dt)
+function PlayerPotThrowState:update(dt)
     -- check if hitbox collides with any entities in the scene
-    for k, entity in pairs(self.dungeon.currentRoom.entities) do
-        if entity:collides(self.swordHitbox) then
-            entity:damage(1)
-            gSounds['hit-enemy']:play()
-
-            --chance to generate a heart
-            --TESTING
-            if math.random(1) == 1 then
-              table.insert(self.dungeon.currentRoom.objects, GameObject(
-                GAME_OBJECT_DEFS['heart'],
-                entity.x,
-                entity.y
-              ))
-            end
-        end
-    end
 
     if self.player.currentAnimation.timesPlayed > 0 then
         self.player.currentAnimation.timesPlayed = 0
+        self.player.hasPot = false
         self.player:changeState('idle')
-    end
-
-    if love.keyboard.wasPressed('space') then
-        self.player:changeState('swing-sword')
     end
 end
 
-function PlayerThrowPotState:render()
+function PlayerPotThrowState:render()
     local anim = self.player.currentAnimation
     love.graphics.draw(gTextures[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()],
         math.floor(self.player.x - self.player.offsetX), math.floor(self.player.y - self.player.offsetY))
