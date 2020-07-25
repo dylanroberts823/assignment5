@@ -192,13 +192,21 @@ function Room:update(dt)
 
         -- trigger collision callback on object
         if self.player:collides(object) then
-            local remove = object:onCollide(self.player)
-            if remove then
-              table.remove(self.objects, k)
-            end
+          --prevent collision with solid objects
+          if object.collidable then
+            if self.player.direction == 'left' then self.player.x = self.player.x + PLAYER_WALK_SPEED * dt
+            elseif self.player.direction == 'right' then self.player.x = self.player.x - PLAYER_WALK_SPEED * dt
+            elseif self.player.direction == 'up' then self.player.y = self.player.y + PLAYER_WALK_SPEED * dt
+            elseif self.player.direction == 'down' then self.player.y = self.player.y - PLAYER_WALK_SPEED * dt end
+          end
+
+          object:onCollide(self.player)
+          if object.consumable and not object.consumed then
+            table.remove(self.objects, k)
+            object.consumed = true
+          end
         end
     end
-    ::continue::
 end
 
 function Room:render()
