@@ -35,8 +35,13 @@ function GameObject:init(def, x, y)
     if def.consumable == nil then self.consumable = function() end
     else self.consumable = def.consumable end
 
-    self.onCollide = def.onCollide or function() end
+    self.collidable = def.collidable or function() end
     self.collidable = def.collidable or false
+end
+
+function GameObject:collides(target)
+    return not (self.x + self.width < target.x or self.x > target.x + target.width or
+                self.y + self.height < target.y or self.y > target.y + target.height)
 end
 
 function GameObject:update(dt)

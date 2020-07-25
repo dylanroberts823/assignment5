@@ -31,12 +31,15 @@ GAME_OBJECT_DEFS = {
       width = 16,
       height = 16,
       solid = false,
+      consumable = false,
+      consumed = false,
       defaultState = 'dropped',
+      collidable = true,
       states = {
           ['dropped'] = {
               frame = 111
           }
-      }
+      },
     },
     ['heart'] = {
       type = 'heart',
@@ -47,6 +50,8 @@ GAME_OBJECT_DEFS = {
       solid = false,
       defaultState = 'displayed',
       collidable = true,
+      consumable = true,
+      consumed = false,
       states = {
           ['displayed'] = {
               frame = 5
