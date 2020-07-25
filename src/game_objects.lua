@@ -25,7 +25,18 @@ GAME_OBJECT_DEFS = {
         }
     },
     ['pot'] = {
-        -- TODO
+      type = 'pot',
+      texture = 'pots',
+      frame = 111,
+      width = 16,
+      height = 16,
+      solid = false,
+      defaultState = 'dropped',
+      states = {
+          ['dropped'] = {
+              frame = 111
+          }
+      }
     },
     ['heart'] = {
       type = 'heart',
