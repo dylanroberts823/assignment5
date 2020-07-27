@@ -91,17 +91,8 @@ GAME_OBJECT_DEFS = {
       },
 
       onCollide = function(object, player)
-        if collidable ~= false then
-          if player.health <= 4 then
-            player.health = player.health + 2
-          elseif player.health == 5 then
-            player.health = player.health + 1
-          end
-        end
-
-        collidable = false
-
-        return true
+        player.health = math.min(player.health + 2, 6)
+        object.consumed = true
       end
     },
 }
