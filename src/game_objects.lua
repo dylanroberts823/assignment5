@@ -35,14 +35,42 @@ GAME_OBJECT_DEFS = {
       consumed = false,
       defaultState = 'dropped',
       collidable = true,
+      projectile = false,
       states = {
           ['dropped'] = {
             frame = 111
           },
           ['lifted'] = {
-              frame = 111
-          }
+            frame = 111
+          },
+          ['throwing'] = {
+            frame = 111
+          },
+          ['thrown'] = {
+            frame = 111
+          },
+          ['broken'] = {
+            frame = 111
+          },
+
       },
+      throw = function(object, player)
+        object.state = "thrown"
+        local throw_distance = 4 * TILE_SIZE
+        local dx, dy
+
+        if player.direction == 'right' then dx, dy = throw_distance, 0
+        elseif player.direction == 'left' then dx, dy = -throw_distance, 0
+        elseif player.direction == 'up' then dx, dy = 0, -throw_distance
+        else dx, dy = 0, throw_distance end
+
+        Timer.tween(.5, {
+            [object] = {x = object.x + dx, y = object.y + dy}
+        }):finish(function()
+          object.state = 'broken'
+        end)
+
+      end
     },
     ['heart'] = {
       type = 'heart',

@@ -190,28 +190,55 @@ function Room:update(dt)
     for k, object in pairs(self.objects) do
         object:update(dt)
 
-        -- trigger collision callback on object
-        if self.player:collides(object) then
-          --prevent collision with solid objects
-          if object.collidable then
-            if self.player.direction == 'left' then self.player.x = self.player.x + PLAYER_WALK_SPEED * dt
-            elseif self.player.direction == 'right' then self.player.x = self.player.x - PLAYER_WALK_SPEED * dt
-            elseif self.player.direction == 'up' then self.player.y = self.player.y + PLAYER_WALK_SPEED * dt
-            elseif self.player.direction == 'down' then self.player.y = self.player.y - PLAYER_WALK_SPEED * dt end
-          end
-
-          object:onCollide(self.player)
-          if object.consumable and not object.consumed then
-            table.remove(self.objects, k)
-            object.consumed = true
-          end
+      -- trigger collision callback on object
+      if self.player:collides(object) then
+        --prevent collision with solid objects
+        if object.collidable then
+          if self.player.direction == 'left' then self.player.x = self.player.x + PLAYER_WALK_SPEED * dt
+          elseif self.player.direction == 'right' then self.player.x = self.player.x - PLAYER_WALK_SPEED * dt
+          elseif self.player.direction == 'up' then self.player.y = self.player.y + PLAYER_WALK_SPEED * dt
+          elseif self.player.direction == 'down' then self.player.y = self.player.y - PLAYER_WALK_SPEED * dt end
         end
 
-        --Have pot track player if it is lifted
-        if object.type == 'pot' and object.state == 'lifted' then
-          object.x = self.player.x
-          object.y = self.player.y - 8
+        object:onCollide(self.player)
+        if object.consumable and not object.consumed then
+          table.remove(self.objects, k)
+          object.consumed = true
         end
+      end
+
+      --Have pot track player if it is lifted
+      if object.type == 'pot' and object.state == 'lifted' then
+        object.x = self.player.x
+        object.y = self.player.y - 8
+      end
+
+      --Have pot be thrown if it is in thrown state
+      if object.type == 'pot' and object.state == 'throwing' then
+        object.state = 'thrown'
+        object:throw(self.player, object)
+      end
+
+      for k, entity in pairs(self.entities) do
+        if object:collides(entity) and object.state == 'thrown' then
+          entity:damage(1)
+          object.state = 'broken'
+        end
+      end
+
+      --Pot breaks if it hits the walls
+      if object.type == 'pot' and object.state == 'thrown' then
+        if object.x <= MAP_RENDER_OFFSET_X
+        or object.x >= VIRTUAL_WIDTH - TILE_SIZE  - 16
+        or object.y <= MAP_RENDER_OFFSET_Y
+        or object.y >= VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - 16 then
+          print("in wall state")
+          object.state = 'broken'
+        end
+      end
+
+      --Have pot be removed if broken
+      if object.type == 'pot' and object.state == 'broken' then table.remove(self.objects, k) end
 
     end
 end

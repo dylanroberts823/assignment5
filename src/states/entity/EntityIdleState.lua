@@ -10,7 +10,6 @@ EntityIdleState = Class{__includes = BaseState}
 
 function EntityIdleState:init(entity)
     self.entity = entity
-    print(self.entity.hasPot)
     if self.entity.hasPot then self.entity:changeAnimation('pot-idle-' .. self.entity.direction)
     else self.entity:changeAnimation('idle-' .. self.entity.direction) end
 

@@ -1,5 +1,3 @@
-
-
 PlayerPotThrowState = Class{__includes = BaseState}
 
 function PlayerPotThrowState:init(player, dungeon)
@@ -13,6 +11,13 @@ function PlayerPotThrowState:init(player, dungeon)
     -- create hitbox based on where the player is and facing
     local direction = self.player.direction
     self.player:changeAnimation('pot-throw-' .. self.player.direction)
+
+    -- check if hitbox collides with any entities in the scene
+    for k, object in pairs(self.dungeon.currentRoom.objects) do
+        if object.type == 'pot' and object.state == 'lifted' then
+          object.state = 'throwing'
+        end
+    end
 end
 
 function PlayerPotThrowState:enter(params)
@@ -22,7 +27,6 @@ function PlayerPotThrowState:enter(params)
 end
 
 function PlayerPotThrowState:update(dt)
-    -- check if hitbox collides with any entities in the scene
 
     if self.player.currentAnimation.timesPlayed > 0 then
         self.player.currentAnimation.timesPlayed = 0
