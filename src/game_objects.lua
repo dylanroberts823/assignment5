@@ -56,6 +56,7 @@ GAME_OBJECT_DEFS = {
       },
       throw = function(object, player)
         object.state = "thrown"
+
         local throw_distance = 4 * TILE_SIZE
         local dx, dy
 
@@ -64,7 +65,7 @@ GAME_OBJECT_DEFS = {
         elseif player.direction == 'up' then dx, dy = 0, -throw_distance
         else dx, dy = 0, throw_distance end
 
-        Timer.tween(.5, {
+        Timer.tween(.75, {
             [object] = {x = object.x + dx, y = object.y + dy}
         }):finish(function()
           object.state = 'broken'

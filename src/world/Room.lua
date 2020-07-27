@@ -243,7 +243,6 @@ function Room:update(dt)
         or object.x >= VIRTUAL_WIDTH - TILE_SIZE  - 16
         or object.y <= MAP_RENDER_OFFSET_Y
         or object.y >= VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - 16 then
-          print("in wall state")
           object.state = 'broken'
         end
       end

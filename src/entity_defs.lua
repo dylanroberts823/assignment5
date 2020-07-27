@@ -89,7 +89,7 @@ ENTITY_DEFS = {
                 texture = 'character-pot-lift'
             },
             ['pot-lift-up'] = {
-                frames = {4, 5, 6},
+                frames = {7, 8, 9},
                 interval = .15,
                 looping = false,
                 texture = 'character-pot-lift'

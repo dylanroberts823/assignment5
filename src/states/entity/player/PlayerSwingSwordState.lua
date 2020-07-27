@@ -63,8 +63,7 @@ function PlayerSwingSwordState:update(dt)
             gSounds['hit-enemy']:play()
             if entity.health == 0 then
               --chance to generate a heart
-              --TESTING
-              if math.random(1) == 1 then
+              if math.random(3) == 1 then
                 table.insert(self.dungeon.currentRoom.objects, GameObject(
                   GAME_OBJECT_DEFS['heart'],
                   entity.x,
