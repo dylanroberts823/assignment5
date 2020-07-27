@@ -12,7 +12,7 @@ ENTITY_DEFS = {
         animations = {
             ['walk-left'] = {
                 frames = {13, 14, 15, 16},
-                interval = 0.155,
+                interval = 0.15,
                 texture = 'character-walk'
             },
             ['walk-right'] = {
@@ -69,7 +69,91 @@ ENTITY_DEFS = {
                 interval = 0.05,
                 looping = false,
                 texture = 'character-swing-sword'
-            }
+            },
+            ['pot-lift-left'] = {
+                frames = {10, 11, 12},
+                interval = .15,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-right'] = {
+                frames = {4, 5, 6},
+                interval = .15,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-down'] = {
+                frames = {1, 2, 3},
+                interval = .15,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-up'] = {
+                frames = {4, 5, 6},
+                interval = .15,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-walk-left'] = {
+                frames = {13, 14, 15, 16},
+                interval = 0.15,
+                texture = 'character-pot-walk'
+            },
+            ['pot-walk-right'] = {
+                frames = {5, 6, 7, 8},
+                interval = 0.15,
+                texture = 'character-pot-walk'
+            },
+            ['pot-walk-down'] = {
+                frames = {1, 2, 3, 4},
+                interval = 0.15,
+                texture = 'character-pot-walk'
+            },
+            ['pot-walk-up'] = {
+                frames = {9, 10, 11, 12},
+                interval = 0.15,
+                texture = 'character-pot-walk'
+            },
+            ['pot-idle-left'] = {
+                frames = {12},
+                texture = 'character-pot-lift'
+            },
+            ['pot-idle-right'] = {
+                frames = {6},
+                texture = 'character-pot-lift'
+            },
+            ['pot-idle-down'] = {
+                frames = {3},
+                texture = 'character-pot-lift'
+            },
+            ['pot-idle-up'] = {
+                frames = {9},
+                texture = 'character-pot-lift'
+            },
+            ['pot-throw-left'] = {
+                frames = {12, 11, 10},
+                interval = 0.15,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-throw-right'] = {
+                frames = {6, 5, 4},
+                interval = 0.15,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-throw-down'] = {
+                frames = {3, 2, 1},
+                interval = 0.15,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-throw-up'] = {
+                frames = {9, 8, 7},
+                interval = 0.15,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
         }
     },
     ['skeleton'] = {

@@ -32,8 +32,23 @@ function GameObject:init(def, x, y)
     if def.onCollide == nil then self.onCollide = function() end
     else self.onCollide = def.onCollide end
 
-    if def.consumed == nil then self.consumed = false
-    else self.consumed = def.consumed end
+    if def.consumable == nil then self.consumable = function() end
+    else self.consumable = def.consumable end
+
+    if self.collidable == nil then self.collidable = false
+    else self.collidable = def.collidable end
+
+    if self.projectile == nil then self.projectile = false
+    else self.projectile = def.projectile end
+
+    if def.throw == nil then self.throw = function() end
+    else self.throw = def.throw end
+
+end
+
+function GameObject:collides(target)
+    return not (self.x + self.width < target.x or self.x > target.x + target.width or
+                self.y + self.height < target.y or self.y > target.y + target.height)
 end
 
 function GameObject:update(dt)
